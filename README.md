@@ -1,6 +1,6 @@
 # Diaphora-ng for Ghidra
 
-[Diaphora](https://github.com/joxeankoret/diaphora), the program diffing tool by Joxean Koret, ported to Ghidra 12.1.4+ as a native Java extension, **plus Claude diff pseudo-code**: [Claude-Rays Decompiler for Ghidra](https://github.com/Claude-Rays/claude-rays-decompiler-ghidra) decompiles both versions of a match in a single query, aligned so that only the real changes stand out, lists the changes and assesses whether the patch fixes a security bug.
+[Diaphora](https://github.com/joxeankoret/diaphora), the program diffing tool by Joxean Koret, ported to Ghidra 12.2+ as a native Java extension, **plus Claude diff pseudo-code**: [Claude-Rays Decompiler for Ghidra](https://github.com/Claude-Rays/claude-rays-decompiler-ghidra) decompiles both versions of a match in a single query, aligned so that only the real changes stand out, lists the changes and assesses whether the patch fixes a security bug.
 
 Everything else is [diaphora-ghidra](https://github.com/Claude-Rays/diaphora-ghidra), including its canonical local names for the pseudo-code diffs: the port is based on Diaphora 3.4.1, commit [`de0eb92`](https://github.com/joxeankoret/diaphora/tree/de0eb920c1e54649bb3e7c4df5fa058b5c2cdc91) of the original repository, and its SQLite database schema (version 3.4) and SQL heuristics are those of the Python version.
 
@@ -8,7 +8,7 @@ Exporting and diffing two builds of urlmon.dll (September vs October 2026), then
 
 ![Diff pseudo-code and Claude diff pseudo-code of a patched function of urlmon.dll](screenshots/ghidra-claude-diff-pseudo-code.gif)
 
-> **Note:** So far the extension has only been tested on Windows, with Ghidra 12.1.4 and x64 PE binaries.
+> **Note:** So far the extension has only been tested on Windows, with Ghidra 12.1.4 and 12.2, and x64 PE binaries.
 
 Diaphora-ng and diaphora-ghidra can be installed side by side: Diaphora-ng has its own package (`org.diaphorang.ghidra`), plugin (`DiaphoraNgPlugin`), menu (**Diaphora-ng**), results window and preferences.
 
@@ -21,7 +21,7 @@ Diaphora-ng and diaphora-ghidra can be installed side by side: Diaphora-ng has i
 
 ## Requirements
 
-- Ghidra 12.1.4+ and the JDK it runs on (21+).
+- Ghidra 12.2+ and the JDK it runs on (25+).
 - For *Claude diff pseudo-code*: [Claude-Rays Decompiler for Ghidra](https://github.com/Claude-Rays/claude-rays-decompiler-ghidra) installed in the same Ghidra, with the [Claude Code](https://claude.com/claude-code) CLI installed and logged in. It is optional: Diaphora-ng finds its service at run time by name, adds its plugin to the tool if it is installed but not enabled, and without it the Claude commands say what is missing.
 
 ## Build & install
@@ -29,11 +29,11 @@ Diaphora-ng and diaphora-ghidra can be installed side by side: Diaphora-ng has i
 The Gradle wrapper (`gradlew.bat`, Gradle 9.1.0) downloads Gradle, so there is nothing else to install.
 
 ```bat
-set GHIDRA_INSTALL_DIR=C:\path\to\ghidra_12.1.4_PUBLIC
+set GHIDRA_INSTALL_DIR=C:\path\to\ghidra_12.2_PUBLIC
 gradlew.bat buildExtension
 ```
 
-The extension zip lands in `dist\` (`ghidra_12.1.4_PUBLIC_<date>_diaphora-ng-ghidra.zip`). It includes [sqlite-jdbc](https://github.com/xerial/sqlite-jdbc), which Gradle downloads from Maven Central.
+The extension zip lands in `dist\` (`ghidra_12.2_PUBLIC_<date>_diaphora-ng-ghidra.zip`). It includes [sqlite-jdbc](https://github.com/xerial/sqlite-jdbc), which Gradle downloads from Maven Central.
 
 To install it:
 
