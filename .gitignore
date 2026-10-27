@@ -1,0 +1,13 @@
+.gradle/
+build/
+dist/
+bin/
+lib/
+*.sqlite
+*.diaphora
+*.class
+.project
+.classpath
+.settings/
+.vscode/
+.idea/
